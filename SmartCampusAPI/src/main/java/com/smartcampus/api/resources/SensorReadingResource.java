@@ -14,8 +14,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
- * Sensor Reading Resource - Part 4 
- * Manages reading operations for a specific sensor
+ * Sensor Reading Resource - Part 4 Manages reading operations for a specific
+ * sensor
  */
 public class SensorReadingResource {
 
@@ -42,6 +42,9 @@ public class SensorReadingResource {
         if (readingList == null) {
             readingList = new ArrayList<>();
         }
+
+        //Sort the sensor readings in ascending order based on timestamp (oldest to newest)
+        readingList.sort((a, b) -> Long.compare(a.getTimestamp(), b.getTimestamp()));
         return Response.ok(readingList).build();
     }
 
@@ -56,6 +59,7 @@ public class SensorReadingResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
+
     public Response addReading(SensorReading reading) {
         // Checking if reading payload is provided
         if (reading == null) {
