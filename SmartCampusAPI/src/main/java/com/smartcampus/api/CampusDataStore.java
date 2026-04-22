@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.smartcampus.smartcampusapi;
+package com.smartcampus.api;
 
-import com.smartcampus.smartcampusapi.model.Room;
-import com.smartcampus.smartcampusapi.model.Sensor;
-import com.smartcampus.smartcampusapi.model.SensorReading;
+import com.smartcampus.api.model.Room;
+import com.smartcampus.api.model.Sensor;
+import com.smartcampus.api.model.SensorReading;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -14,7 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
  *
  * @author User
  */
-public class CampusData {
+public class CampusDataStore {
 
     //Rooms Storage: Room id -> Room
     private static final ConcurrentHashMap<String, Room> rooms = new ConcurrentHashMap<>();

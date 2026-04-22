@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.smartcampus.smartcampusapi.resources;
+package com.smartcampus.api.resources;
 
-import com.smartcampus.smartcampusapi.CampusData;
-import com.smartcampus.smartcampusapi.model.Room;
+import com.smartcampus.api.CampusDataStore;
+import com.smartcampus.api.model.Room;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.Consumes;
@@ -33,7 +33,7 @@ public class RoomResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllRooms() {
-        List<Room> roomList = new ArrayList<>(CampusData.getRooms().values());
+        List<Room> roomList = new ArrayList<>(CampusDataStore.getRooms().values());
         return Response.ok(roomList).build();
     }
 
@@ -48,13 +48,13 @@ public class RoomResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response createRoom(Room room) {
         //Check if room with same ID already exists
-        if (CampusData.getRooms().containsKey(room.getId())) {
+        if (CampusDataStore.getRooms().containsKey(room.getId())) {
             return Response.status(Response.Status.CONFLICT)
                     .entity("{\"error\": \"Room " + room.getId() + " already exists\"}")
                     .build();
         }
         //Store the new room in CampusData using its ID as the key
-        CampusData.getRooms().put(room.getId(), room);
+        CampusDataStore.getRooms().put(room.getId(), room);
         return Response.status(Response.Status.CREATED)
                 .entity("{\"message\": \"Room " + room.getId() + " created successfully ! \"}")
                 .build();
@@ -71,7 +71,7 @@ public class RoomResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getRoomById(@PathParam("roomId") String roomId) {
         //Look up room by ID in CampusData
-        Room room = CampusData.getRooms().get(roomId);
+        Room room = CampusDataStore.getRooms().get(roomId);
         if (room == null) {
             return Response.status(Response.Status.NOT_FOUND)
                     .entity("{\"error\": \"Room " + roomId + " not found\"}")
@@ -91,7 +91,7 @@ public class RoomResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response deleteRoom(@PathParam("roomId") String roomId) {
         //Look up room by ID in CampusData
-        Room room = CampusData.getRooms().get(roomId);
+        Room room = CampusDataStore.getRooms().get(roomId);
 
         //Checking if the room exists
         if (room == null) {
@@ -108,7 +108,7 @@ public class RoomResource {
         }
 
         //Delete the room
-        CampusData.getRooms().remove(roomId);
+        CampusDataStore.getRooms().remove(roomId);
         return Response.ok("{\"message\": \"Room " + roomId + " deleted successfully ! \"}").build();
     }
 }
