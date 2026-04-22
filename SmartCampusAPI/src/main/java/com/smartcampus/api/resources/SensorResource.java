@@ -123,7 +123,7 @@ public class SensorResource {
 
     /**
      * Sub-resource locator for sensor readings - Part 4 
-     * Forwards requests for a sensor's readings to SensorReadingResource 
+     * Forwards requests for a sensor's readings to SensorReadingResource
      * Path: /api/v1/sensors/{sensorId}/readings
      *
      * @param sensorId - the sensor whose readings are being accessed
