@@ -4,10 +4,32 @@
  */
 package com.smartcampus.api.exception.mapper;
 
+import com.smartcampus.api.exception.RoomNotEmptyException;
+import com.smartcampus.api.model.ErrorMessage;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
+import javax.ws.rs.ext.ExceptionMapper;
+import javax.ws.rs.ext.Provider;
+
 /**
  *
  * @author User
  */
-public class RoomNotEmptyExceptionMapper {
-    
+@Provider
+public class RoomNotEmptyExceptionMapper implements ExceptionMapper<RoomNotEmptyException> {
+
+    @Override
+    public Response toResponse(RoomNotEmptyException exception) {
+
+        ErrorMessage errorMessage = new ErrorMessage(
+                exception.getMessage(),
+                409
+        );
+        return Response.status(Status.CONFLICT) //409
+                .entity(errorMessage)
+                .type(MediaType.APPLICATION_JSON)
+                .build();
+    }
+
 }

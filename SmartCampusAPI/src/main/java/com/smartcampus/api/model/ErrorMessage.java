@@ -12,15 +12,14 @@ public class ErrorMessage {
 
     private String errorMessage;
     private int errorCode;
-    private String documentation;
 
     public ErrorMessage() {
     }
 
-    public ErrorMessage(String errorMessage, int errorCode, String documentation) {
+    public ErrorMessage(String errorMessage, int errorCode) {
         this.errorMessage = errorMessage;
         this.errorCode = errorCode;
-        this.documentation = documentation;
+
     }
 
     /**
@@ -49,20 +48,6 @@ public class ErrorMessage {
      */
     public void setErrorCode(int errorCode) {
         this.errorCode = errorCode;
-    }
-
-    /**
-     * @return the documentation
-     */
-    public String getDocumentation() {
-        return documentation;
-    }
-
-    /**
-     * @param documentation the documentation to set
-     */
-    public void setDocumentation(String documentation) {
-        this.documentation = documentation;
     }
 
 }
