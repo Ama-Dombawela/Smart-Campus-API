@@ -4,7 +4,7 @@
  */
 package com.smartcampus.api.resource;
 
-import com.smartcampus.api.CampusDataStore;
+import com.smartcampus.api.datastore.CampusDataStore;
 import com.smartcampus.api.exception.LinkedResourceNotFoundException;
 import com.smartcampus.api.model.Room;
 import com.smartcampus.api.model.Sensor;

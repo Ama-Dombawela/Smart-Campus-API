@@ -4,7 +4,7 @@
  */
 package com.smartcampus.api.resource;
 
-import com.smartcampus.api.CampusDataStore;
+import com.smartcampus.api.datastore.CampusDataStore;
 import com.smartcampus.api.model.Room;
 import com.smartcampus.api.model.Sensor;
 import javax.ws.rs.core.Response;

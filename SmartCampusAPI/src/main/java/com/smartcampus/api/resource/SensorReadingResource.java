@@ -1,6 +1,6 @@
 package com.smartcampus.api.resource;
 
-import com.smartcampus.api.CampusDataStore;
+import com.smartcampus.api.datastore.CampusDataStore;
 import com.smartcampus.api.exception.SensorUnavailableException;
 import com.smartcampus.api.model.Sensor;
 import com.smartcampus.api.model.SensorReading;

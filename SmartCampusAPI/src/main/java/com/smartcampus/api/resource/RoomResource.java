@@ -4,7 +4,7 @@
  */
 package com.smartcampus.api.resource;
 
-import com.smartcampus.api.CampusDataStore;
+import com.smartcampus.api.datastore.CampusDataStore;
 import com.smartcampus.api.exception.RoomNotEmptyException;
 import com.smartcampus.api.model.Room;
 import java.util.ArrayList;

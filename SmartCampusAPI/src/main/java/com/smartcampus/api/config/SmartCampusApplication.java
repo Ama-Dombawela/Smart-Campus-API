@@ -1,4 +1,4 @@
-package com.smartcampus.api;
+package com.smartcampus.api.config;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
