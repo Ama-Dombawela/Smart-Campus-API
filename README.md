@@ -1,15 +1,15 @@
-# Smart-Campus-API
+# 🏫 Smart-Campus-API
 
 **Module:** 5COSC022W - Client-Server Architectures  
-**Student Name:** Ama Dombawela 
-**UOW No:** W2120682 
-**IIT Student No**: 20231642  
+**Student Name:** Ama Dombawela  
+**UOW No:** W2120682  
+**IIT Student No:** 20231642 
 
 ---
 
-## Overview
+## 📋 Overview
 
-The Smart Campus API is a RESTful web service implemented using **JAX-RS (Jersey 2.32)** and packaged as a **WAR** file for deployment on **Apache Tomcat**.
+The **Smart Campus API** is a RESTful web service built using **JAX-RS (Jersey 2.32)** and packaged as a **WAR file** for deployment on **Apache Tomcat**. It provides a backend system for managing university campus infrastructure, including **Rooms**, the **Sensors installed within them**, and the associated **Sensor Readings** used to record historical data over time.
 
 The system is designed to manage three linked campus entities:
 
@@ -17,15 +17,15 @@ The system is designed to manage three linked campus entities:
 - **Sensors** (devices installed in rooms)
 - **SensorReadings** (historical measurements per sensor)
 
-Data persistence is handled using an **in-memory datastore** (`CampusDataStore`) backed by `ConcurrentHashMap` collections. No external relational or NoSQL database is used.
-
 ---
 
-## API Design
+## 🏗️ API Design
 
 The JAX-RS application class `SmartCampusApplication` defines the API base path as:
 
 `@ApplicationPath("/api/v1")`
+
+---
 
 All endpoints are therefore rooted at:
 
@@ -34,9 +34,13 @@ All endpoints are therefore rooted at:
 - Base URL depends on the Tomcat deployment context path.
 - The fixed JAX-RS application root is `/api/v1`.
 
+---
+
 For this current setup, the base URL is:
 
 `http://localhost:8080/SmartCampusAPI/api/v1`
+
+---
 
 Registered resource classes:
 
@@ -45,10 +49,14 @@ Registered resource classes:
 - `SensorResource` (`@Path("/sensors")`) for sensor operations
 - `SensorReadingResource` accessed through a sub-resource locator at `@Path("/{sensorId}/readings")`
 
+---
+
 Sub-resource rationale for `/sensors/{sensorId}/readings`:
 
 - It models the real-world hierarchy where readings belong to a specific sensor.
 - It keeps reading operations modular and separated from core sensor CRUD responsibilities.
+
+---
 
 ### Discovery Endpoint Clarification
 
@@ -70,7 +78,7 @@ Sub-resource rationale for `/sensors/{sensorId}/readings`:
 
 ---
 
-## Resource Structure
+## 🌳 Resource Structure
 
 The implemented hierarchy is:
 
@@ -93,7 +101,7 @@ The implemented hierarchy is:
 
 ---
 
-## Key Design Decisions
+## 🎯 Key Design Decisions
 
 - **Thread-safe in-memory storage:** `CampusDataStore` uses `ConcurrentHashMap` for rooms, sensors, and readings.
 - **Sub-resource locator pattern:** `SensorResource#getReadingResource(...)` delegates reading operations to `SensorReadingResource`.
@@ -104,7 +112,7 @@ The implemented hierarchy is:
 
 ---
 
-## Project Structure
+## 📁 Project Structure
 
 ```text
 SmartCampusAPI/
@@ -157,11 +165,11 @@ SmartCampusAPI/
 
 ### In-Memory Data Management
 
-The application uses in-memory storage via **CampusDataStore** for managing all Rooms, Sensors, and SensorReadings data.
+The application uses in-memory storage via **CampusDataStore** for managing all Rooms, Sensors, and SensorReadings data.backed by `ConcurrentHashMap` collections. No external relational or NoSQL database is used.
 
 ---
 
-## Prerequisites
+## ⚙️ Prerequisites
 
 Before building and running the project, install:
 
@@ -171,7 +179,23 @@ Before building and running the project, install:
 
 ---
 
-## Build and Run Instructions
+## 🚀 Git Workflow / Setup Instructions
+
+Clone the repository to your local machine:
+
+```bash
+git clone <repository-url>
+```
+
+Navigate into the project folder:
+
+```bash
+cd SmartCampusAPI
+```
+
+---
+
+## 🔨 Build and Run Instructions
 
 ### 1. Build the WAR
 
@@ -201,7 +225,7 @@ http://localhost:8080/SmartCampusAPI/api/v1
 
 ---
 
-## Full API Endpoint Reference
+## 📚 Full API Endpoint Reference
 
 ### Part 1: Discovery
 
@@ -236,7 +260,7 @@ http://localhost:8080/SmartCampusAPI/api/v1
 
 ---
 
-## Sample cURL Commands
+## 💻 Sample cURL Commands
 
 The examples below use full URLs directly (base: `http://localhost:8080/SmartCampusAPI/api/v1`).
 
@@ -340,7 +364,7 @@ curl -X GET "http://localhost:8080/SmartCampusAPI/api/v1/sensors/TEMP-001/readin
 
 ---
 
-## Error Handling
+## ⚠️ Error Handling
 
 The API uses custom `ExceptionMapper` implementations for controlled error responses:
 
@@ -355,7 +379,7 @@ In addition, `BaseResource` contains shared helper methods used by resource clas
 
 ---
 
-## Notes 
+## 📝 Notes 
 
 - The implementation follows REST resource separation with clear URI design.
 - Thread-safety and request concurrency are addressed through `ConcurrentHashMap` and synchronized write sections where required.
