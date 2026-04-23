@@ -13,39 +13,42 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
- *Provides API metadata at the root endpoint GET /api/v1/
- * @author User
+ * @author Ama Dombawela 
+ * UOW No: W2120682 
+ * IIT Student No: 20231642
+ * 
+ * Provides API metadata at the root endpoint GET /api/v1/
+ 
  */
-
 @Path("/")
-public class DiscoveryResource extends BaseResource{
-    
+public class DiscoveryResource extends BaseResource {
+
     /**
-     * GET /api/v1/
+     * GET /api/v1/ 
      * Returns API version,contact info and links to all resource collections
-     * @return JSON response with API metadata 
+     * @return JSON response with API metadata
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response discover(){
-        
+    public Response discover() {
+
         //Main response map to hold all API metadata
         Map<String, Object> info = new HashMap<>();
-        
+
         //API version info
         info.put("version", "1.0");
         info.put("description", "Smart Campus Sensor & Room Management API");
         info.put("contact", "admin@smartcampus.ac.uk");
-        
+
         //Resource links(HATEOAS)
         //Allows clients to navigate the API without hardcoding URLs
         Map<String, String> links = new HashMap<>();
-        links.put("rooms","/api/v1/rooms");
-        links.put("sensors","/api/v1/sensors");
+        links.put("rooms", "/api/v1/rooms");
+        links.put("sensors", "/api/v1/sensors");
         info.put("resources", links);
-        
+
         //return the response status 
         return Response.ok(info).build();
     }
-    
+
 }

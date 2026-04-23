@@ -20,6 +20,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 /**
+ * 
  * Room Resource - Part 2 Manages all room operations for the Smart Campus API
  * Base path: /api/v1/rooms
  */
@@ -27,7 +28,8 @@ import javax.ws.rs.core.MediaType;
 public class RoomResource extends BaseResource {
 
     /**
-     * GET /api/v1/rooms Returns a list of all the rooms in the system
+     * GET /api/v1/rooms 
+     * Returns a list of all the rooms in the system
      *
      * @return full room objects including id,name,capacity and sensorIds
      */
@@ -40,7 +42,7 @@ public class RoomResource extends BaseResource {
 
     /**
      * POST /api/v1/rooms
-     *
+     * Crea
      * @param room - the room object to be created
      * @return 409 conflict if room already exists, 201 Created on success
      */
@@ -69,7 +71,7 @@ public class RoomResource extends BaseResource {
 
     /**
      * GET /api/v1/rooms/{roomId}
-     *
+     * Returns detailed metadata for a specific room
      * @param roomId - the ID of the room to retrieve
      * @return 404 Not Found if room does not exist, 200 OK on success
      */
@@ -86,7 +88,8 @@ public class RoomResource extends BaseResource {
     }
 
     /**
-     * DELETE /api/v1/rooms/{roomId} delete a room from the system
+     * DELETE /api/v1/rooms/{roomId} 
+     * delete a room from the system
      *
      * @param roomId - ID of the room to delete
      * @return 404 if not found, 409 if sensors assigned, 200 on success

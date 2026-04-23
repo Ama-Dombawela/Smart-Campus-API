@@ -13,8 +13,11 @@ import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
 /**
+ * @author Ama Dombawela
+ * UOW No: W2120682
+ * IIT Student No: 20231642
  *
- * @author User
+ * Room Not Empty Exception Mapper - Maps RoomNotEmptyException to HTTP 409 Conflict
  */
 @Provider
 public class RoomNotEmptyExceptionMapper implements ExceptionMapper<RoomNotEmptyException> {

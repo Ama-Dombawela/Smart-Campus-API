@@ -5,8 +5,11 @@
 package com.smartcampus.api.model;
 
 /**
+ * @author Ama Dombawela
+ * UOW No: W2120682
+ * IIT Student No: 20231642
  *
- * @author User
+ * Sensor Model - Represents a sensor device with readings and status
  */
 public class Sensor {
 

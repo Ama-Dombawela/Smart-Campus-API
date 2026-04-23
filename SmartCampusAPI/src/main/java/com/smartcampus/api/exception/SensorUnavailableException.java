@@ -5,8 +5,11 @@
 package com.smartcampus.api.exception;
 
 /**
+ * @author Ama Dombawela
+ * UOW No: W2120682
+ * IIT Student No: 20231642
  *
- * @author User
+ * Sensor Unavailable Exception - Thrown when attempting to use an unavailable sensor
  */
 public class SensorUnavailableException extends RuntimeException {
 

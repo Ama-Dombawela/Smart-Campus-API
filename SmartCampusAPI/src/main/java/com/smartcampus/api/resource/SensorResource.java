@@ -22,10 +22,12 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
- * Sensor Resource - Part 3 
- * Manages all sensor operations for the Smart Campus
- * 
- * API Base path: /api/v1/sensors
+ * @author Ama Dombawela
+ * UOW No: W2120682
+ * IIT Student No: 20231642
+ *
+ * Sensor Resource - Manages all CRUD operations and filtering for sensors
+ * Base path: /api/v1/sensors
  */
 @Path("/sensors")
 public class SensorResource extends BaseResource {
@@ -74,8 +76,8 @@ public class SensorResource extends BaseResource {
     }
 
     /**
-     * POST /api/v1/sensors Registers a new sensor and validates that roomId
-     * exists
+     * POST /api/v1/sensors 
+     * Registers a new sensor and validates that roomId exists
      *
      * @param sensor - the sensor object from the request body
      * @return 400 if required fields are missing, 409 if sensor ID already
@@ -119,7 +121,9 @@ public class SensorResource extends BaseResource {
         synchronized (CampusDataStore.class) {
             CampusDataStore.getSensors().put(sensor.getId(), sensor);
 
-            List<String> updatedSensorIds = new ArrayList<>(room.getSensorIds());
+            List<String> updatedSensorIds = room.getSensorIds() == null
+                    ? new ArrayList<>()
+                    : new ArrayList<>(room.getSensorIds());
             updatedSensorIds.add(sensor.getId());
             room.setSensorIds(updatedSensorIds);
         }
@@ -128,9 +132,9 @@ public class SensorResource extends BaseResource {
     }
 
     /**
-     * Sub-resource locator for sensor readings - Part 4 Forwards requests for a
-     * sensor's readings to SensorReadingResource Path:
-     * /api/v1/sensors/{sensorId}/readings
+     * Sub-resource locator for sensor readings - Part 4 
+     * Forwards requests for a sensor's readings to SensorReadingResource 
+     * Path: /api/v1/sensors/{sensorId}/readings
      *
      * @param sensorId - the sensor whose readings are being accessed
      * @return SensorReadingResource instance

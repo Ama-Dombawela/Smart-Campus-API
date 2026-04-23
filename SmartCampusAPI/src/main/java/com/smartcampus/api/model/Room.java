@@ -8,8 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * @author Ama Dombawela
+ * UOW No: W2120682
+ * IIT Student No: 20231642
  *
- * @author User
+ * Room - Represents a campus room with capacity and linked sensors
  */
 public class Room {
 

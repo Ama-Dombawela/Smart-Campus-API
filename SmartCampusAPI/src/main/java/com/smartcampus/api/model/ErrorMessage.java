@@ -5,8 +5,11 @@
 package com.smartcampus.api.model;
 
 /**
+ * @author Ama Dombawela
+ * UOW No: W2120682
+ * IIT Student No: 20231642
  *
- * @author User
+ * Error Message Model - Standard JSON error response structure
  */
 public class ErrorMessage {
 

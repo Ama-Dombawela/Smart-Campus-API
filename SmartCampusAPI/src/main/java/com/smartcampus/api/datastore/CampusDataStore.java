@@ -11,8 +11,14 @@ import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
+ * @author Ama Dombawela 
+ * UOW No: W2120682 
+ * IIT Student No: 20231642
  *
- * @author User
+ * CampusDataStore - Central In-Memory Data Storage Stores all data for the
+ * Smart Campus API using ConcurrentHashMaps Static fields ensure data persists
+ * across multiple JAX-RS request instances ConcurrentHashMap provides
+ * thread-safety for concurrent requests.
  */
 public class CampusDataStore {
 

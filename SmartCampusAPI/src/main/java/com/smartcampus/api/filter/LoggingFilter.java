@@ -13,8 +13,12 @@ import java.util.logging.Logger;
 import javax.ws.rs.ext.Provider;
 
 /**
- *Logging Filter
- *Logs all incoming requests and outgoing responses
+ * @author Ama Dombawela 
+ * UOW No: W2120682 
+ * IIT Student No: 20231642
+ * 
+ * 
+ * Logging Filter Logs all incoming requests and outgoing responses
  * Automatically applied to every API request via @Provider
  */
 @Provider
@@ -24,7 +28,8 @@ public class LoggingFilter implements ContainerRequestFilter, ContainerResponseF
     private static final Logger LOGGER = Logger.getLogger(LoggingFilter.class.getName());
 
     /**
-     * Logs the HTTP method and URI of every incoming reques
+     * Logs the HTTP method and URI of every incoming requests.
+     *
      * @param requestContext - the incoming request context
      * @throws IOException if an error occurs
      */
@@ -38,6 +43,7 @@ public class LoggingFilter implements ContainerRequestFilter, ContainerResponseF
 
     /**
      * Logs the status code of every outgoing response
+     *
      * @param requestContext - the incoming request context
      * @param responseContext - the outgoing response context
      * @throws IOException if an error occurs

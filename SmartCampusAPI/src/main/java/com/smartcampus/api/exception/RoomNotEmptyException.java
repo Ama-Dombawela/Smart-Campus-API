@@ -5,8 +5,11 @@
 package com.smartcampus.api.exception;
 
 /**
+ * @author Ama Dombawela
+ * UOW No: W2120682
+ * IIT Student No: 20231642
  *
- * @author User
+ * Room Not Empty Exception - Thrown when attempting to delete a room containing sensors
  */
 public class RoomNotEmptyException extends RuntimeException {
 

@@ -15,8 +15,13 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
- * Sensor Reading Resource - Part 4 Manages reading operations for a specific
- * sensor
+ * 
+ * @author Ama Dombawela 
+ * UOW No: W2120682 
+ * IIT Student No: 20231642
+ * 
+ * Sensor Reading Resource - Part 4 
+ * Manages reading operations for a specific sensor
  */
 public class SensorReadingResource extends BaseResource {
 
@@ -33,7 +38,7 @@ public class SensorReadingResource extends BaseResource {
 
     /**
      * GET /api/v1/sensors/{sensorId}/readings
-     *
+     * Returns all historical readings for a specific sensor
      * @return all readings for the sensor, or an empty list if none exist
      */
     @GET
@@ -50,8 +55,8 @@ public class SensorReadingResource extends BaseResource {
     }
 
     /**
-     * POST /api/v1/sensors/{sensorId}/readings Adds a new reading for the
-     * sensor and updates sensor currentValue.
+     * POST /api/v1/sensors/{sensorId}/readings 
+     * Adds a new reading for the sensor and updates sensor currentValue.
      *
      * @param reading - sensor reading payload
      * @return 400 if reading payload/value is invalid, 404 if sensor not found,
@@ -72,6 +77,7 @@ public class SensorReadingResource extends BaseResource {
             return badRequestResponse("Reading value is required.");
         }
 
+        //Look up parent sensor by ID
         Sensor sensor = findSensor(sensorId);
         if (sensor == null) {
             return notFoundResponse("Sensor " + sensorId + " not found.");
@@ -84,9 +90,12 @@ public class SensorReadingResource extends BaseResource {
         reading.setId(UUID.randomUUID().toString());
         reading.setTimestamp(System.currentTimeMillis());
 
+        // Synchronized block to prevent race conditions when updating readings
         synchronized (CampusDataStore.class) {
             List<SensorReading> existing = CampusDataStore.getReadings().get(sensorId);
             List<SensorReading> updated = existing == null ? new ArrayList<>() : new ArrayList<>(existing);
+            
+            //Add new reading to the list
             updated.add(reading);
             CampusDataStore.getReadings().put(sensorId, updated);
 

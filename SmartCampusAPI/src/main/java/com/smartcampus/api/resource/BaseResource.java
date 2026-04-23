@@ -11,6 +11,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
+ * @author Ama Dombawela 
+ * UOW No: W2120682 
+ * IIT Student No: 20231642
+ * 
  * Base Resource - Provides common lookup methods and HTTP response builders
  * shared across all resource classes to avoid code duplication.
  */
