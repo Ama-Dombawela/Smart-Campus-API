@@ -4,10 +4,30 @@
  */
 package com.smartcampus.api.exception.mapper;
 
+import com.smartcampus.api.exception.LinkedResourceNotFoundException;
+import com.smartcampus.api.model.ErrorMessage;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.ext.ExceptionMapper;
+import javax.ws.rs.ext.Provider;
+
 /**
  *
  * @author User
  */
-public class LinkedResourceNotFoundExceptionMapper {
-    
+@Provider
+public class LinkedResourceNotFoundExceptionMapper implements ExceptionMapper<LinkedResourceNotFoundException> {
+
+    @Override
+    public Response toResponse(LinkedResourceNotFoundException exception) {
+        ErrorMessage errorMessage = new ErrorMessage(
+                exception.getMessage(),
+                422
+        );
+        return Response.status(422) //422
+                .entity(errorMessage)
+                .type(MediaType.APPLICATION_JSON)
+                .build();
+    }
+
 }

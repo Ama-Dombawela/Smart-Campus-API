@@ -8,6 +8,10 @@ package com.smartcampus.api.exception;
  *
  * @author User
  */
-public class LinkedResourceNotFoundException {
-    
+public class LinkedResourceNotFoundException extends RuntimeException {
+
+    public LinkedResourceNotFoundException(String message) {
+        super(message);
+    }
+
 }
