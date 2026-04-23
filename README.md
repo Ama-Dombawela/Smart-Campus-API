@@ -78,29 +78,6 @@ Sub-resource rationale for `/sensors/{sensorId}/readings`:
 
 ---
 
-## 🌳 Resource Structure
-
-The implemented hierarchy is:
-
-```text
-/api/v1/
-├── GET /                                -> DiscoveryResource.discover()
-├── /rooms                               -> RoomResource
-│   ├── GET /rooms                       -> getAllRooms()
-│   ├── POST /rooms                      -> createRoom()
-│   ├── GET /rooms/{roomId}              -> getRoomById()
-│   └── DELETE /rooms/{roomId}           -> deleteRoom()
-└── /sensors                             -> SensorResource
-    ├── GET /sensors                     -> getAllSensors(type?)
-    ├── POST /sensors                    -> createSensor()
-    ├── GET /sensors/{sensorId}          -> getSensorById()
-    └── /sensors/{sensorId}/readings     -> SensorReadingResource (sub-resource locator)
-        ├── GET /sensors/{sensorId}/readings   -> getReadings()
-        └── POST /sensors/{sensorId}/readings  -> addReading()
-```
-
----
-
 ## 🎯 Key Design Decisions
 
 - **Thread-safe in-memory storage:** `CampusDataStore` uses `ConcurrentHashMap` for rooms, sensors, and readings.
@@ -165,7 +142,7 @@ SmartCampusAPI/
 
 ### In-Memory Data Management
 
-The application uses in-memory storage via **CampusDataStore** for managing all Rooms, Sensors, and SensorReadings data.backed by `ConcurrentHashMap` collections. No external relational or NoSQL database is used.
+The application uses in-memory storage via CampusDataStore, backed by ConcurrentHashMap. No external relational or NoSQL database is used
 
 ---
 
@@ -184,7 +161,7 @@ Before building and running the project, install:
 Clone the repository to your local machine:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/Ama-Dombawela/Smart-Campus-API.git
 ```
 
 Navigate into the project folder:
