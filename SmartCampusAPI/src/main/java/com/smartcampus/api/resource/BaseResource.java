@@ -7,6 +7,7 @@ package com.smartcampus.api.resource;
 import com.smartcampus.api.datastore.CampusDataStore;
 import com.smartcampus.api.model.Room;
 import com.smartcampus.api.model.Sensor;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
@@ -34,6 +35,7 @@ public abstract class BaseResource {
     protected Response notFoundResponse(String message) {
         return Response.status(Response.Status.NOT_FOUND)
                 .entity("{\"error\": \"" + message + "\"}")
+                .type(MediaType.APPLICATION_JSON)
                 .build();
     }
 
@@ -46,6 +48,7 @@ public abstract class BaseResource {
     protected Response conflictResponse(String message) {
         return Response.status(Response.Status.CONFLICT)
                 .entity("{\"error\": \"" + message + "\"}")
+                .type(MediaType.APPLICATION_JSON)
                 .build();
     }
 
@@ -58,6 +61,7 @@ public abstract class BaseResource {
     protected Response badRequestResponse(String message) {
         return Response.status(Response.Status.BAD_REQUEST)
                 .entity("{\"error\": \"" + message + "\"}")
+                .type(MediaType.APPLICATION_JSON)
                 .build();
     }
 
@@ -69,6 +73,7 @@ public abstract class BaseResource {
      */
     protected Response successResponse(String message) {
         return Response.ok("{\"message\": \"" + message + "\"}")
+                .type(MediaType.APPLICATION_JSON)
                 .build();
     }
 
@@ -82,6 +87,7 @@ public abstract class BaseResource {
     protected Response createdResponse(String message) {
         return Response.status(Response.Status.CREATED)
                 .entity("{\"message\": \"" + message + "\"}")
+                .type(MediaType.APPLICATION_JSON)
                 .build();
     }
 

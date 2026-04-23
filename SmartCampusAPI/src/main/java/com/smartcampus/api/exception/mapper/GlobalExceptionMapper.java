@@ -5,6 +5,7 @@
 package com.smartcampus.api.exception.mapper;
 
 import com.smartcampus.api.model.ErrorMessage;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
@@ -20,6 +21,10 @@ public class GlobalExceptionMapper implements ExceptionMapper<Throwable> {
 
     @Override
     public Response toResponse(Throwable exception) {
+        if (exception instanceof WebApplicationException) {
+            return ((WebApplicationException) exception).getResponse();
+        }
+
         // Log the real error server-side but never expose it to the client
         System.err.println("[500] Internal error: " + exception.getMessage());
 

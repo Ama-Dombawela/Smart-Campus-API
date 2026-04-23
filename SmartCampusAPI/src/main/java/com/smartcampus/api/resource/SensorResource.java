@@ -22,15 +22,17 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
- * Sensor Resource - Part 3 Manages all sensor operations for the Smart Campus
+ * Sensor Resource - Part 3 
+ * Manages all sensor operations for the Smart Campus
+ * 
  * API Base path: /api/v1/sensors
  */
 @Path("/sensors")
 public class SensorResource extends BaseResource {
 
     /**
-     * GET /api/v1/sensors Return all sensors, or filter by type if type is
-     * provided
+     * GET /api/v1/sensors 
+     * Return all sensors, or filter by type if type is provided
      *
      * @param type - query parameter to filter sensors by type
      * @return list of matching sensors or all sensors
@@ -51,6 +53,24 @@ public class SensorResource extends BaseResource {
             return Response.ok(filtered).build();
         }
         return Response.ok(sensorList).build();
+    }
+
+    /**
+     * GET /api/v1/sensors/{sensorId}
+     * Returns detailed information for a specific sensor
+     * 
+     * @param sensorId - the ID of the sensor to retrieve
+     * @return 404 Not Found if sensor does not exist, 200 OK on success
+     */
+    @GET
+    @Path("/{sensorId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getSensorById(@PathParam("sensorId") String sensorId) {
+        Sensor sensor = findSensor(sensorId);
+        if (sensor == null) {
+            return notFoundResponse("Sensor " + sensorId + " not found.");
+        }
+        return Response.ok(sensor).build();
     }
 
     /**

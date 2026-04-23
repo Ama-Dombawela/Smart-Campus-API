@@ -48,6 +48,14 @@ public class RoomResource extends BaseResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response createRoom(Room room) {
+        if (room == null) {
+            return badRequestResponse("Room payload is required.");
+        }
+
+        if (room.getId() == null || room.getId().trim().isEmpty()) {
+            return badRequestResponse("Room ID is required.");
+        }
+
         //Check if room with same ID already exists
         if (CampusDataStore.getRooms().containsKey(room.getId())) {
             return conflictResponse("Room " + room.getId() + " already exists");
@@ -96,7 +104,7 @@ public class RoomResource extends BaseResource {
         }
 
         //Checking if any sensors are assigned to that room
-        if (!room.getSensorIds().isEmpty()) {
+        if (room.getSensorIds() != null && !room.getSensorIds().isEmpty()) {
             throw new RoomNotEmptyException("Room " + roomId + " cannot be deleted as it has sensors assigned.");
 
         }
