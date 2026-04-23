@@ -1,6 +1,7 @@
 package com.smartcampus.api.resource;
 
 import com.smartcampus.api.CampusDataStore;
+import com.smartcampus.api.exception.SensorUnavailableException;
 import com.smartcampus.api.model.Sensor;
 import com.smartcampus.api.model.SensorReading;
 import java.util.ArrayList;
@@ -76,6 +77,10 @@ public class SensorReadingResource extends BaseResource {
             return notFoundResponse("Sensor " + sensorId + " not found.");
         }
 
+        //Block new readings if sensor is under MAINTENANCE(403 Forbidden)
+        if ("MAINTENANCE".equalsIgnoreCase(sensor.getStatus())) {
+            throw new SensorUnavailableException("Sensor " + sensorId + " is under MAINTENANCE and cannot accept new readings.");
+        }
         reading.setId(UUID.randomUUID().toString());
         reading.setTimestamp(System.currentTimeMillis());
 

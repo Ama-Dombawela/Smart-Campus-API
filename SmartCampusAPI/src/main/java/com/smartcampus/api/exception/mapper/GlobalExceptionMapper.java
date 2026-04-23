@@ -4,10 +4,33 @@
  */
 package com.smartcampus.api.exception.mapper;
 
+import com.smartcampus.api.model.ErrorMessage;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
+import javax.ws.rs.ext.ExceptionMapper;
+import javax.ws.rs.ext.Provider;
+
 /**
  *
  * @author User
  */
-public class GlobalExceptionMapper {
-    
+@Provider
+public class GlobalExceptionMapper implements ExceptionMapper<Throwable> {
+
+    @Override
+    public Response toResponse(Throwable exception) {
+        // Log the real error server-side but never expose it to the client
+        System.err.println("[500] Internal error: " + exception.getMessage());
+
+        ErrorMessage errorMessage = new ErrorMessage(
+                "Internal Server Error - Something went wrong on our end. Please try again later.",
+                500
+        );
+        return Response.status(Status.INTERNAL_SERVER_ERROR) //500
+                .entity(errorMessage)
+                .type(MediaType.APPLICATION_JSON)
+                .build();
+    }
+
 }
