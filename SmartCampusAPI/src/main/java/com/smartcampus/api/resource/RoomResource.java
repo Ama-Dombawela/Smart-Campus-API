@@ -20,6 +20,11 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 /**
+ *
+ * @author Ama Dombawela 
+ * UOW No: W2120682 
+ * IIT Student No: 20231642
+ * 
  * 
  * Room Resource - Part 2 Manages all room operations for the Smart Campus API
  * Base path: /api/v1/rooms
@@ -42,7 +47,8 @@ public class RoomResource extends BaseResource {
 
     /**
      * POST /api/v1/rooms
-     * Crea
+     * Creates a new room in the system with the Validation
+     * 
      * @param room - the room object to be created
      * @return 409 conflict if room already exists, 201 Created on success
      */
@@ -50,10 +56,12 @@ public class RoomResource extends BaseResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response createRoom(Room room) {
+        //Validate that room payload is not null
         if (room == null) {
             return badRequestResponse("Room payload is required.");
         }
 
+        //Validate that room ID is not null or empty
         if (room.getId() == null || room.getId().trim().isEmpty()) {
             return badRequestResponse("Room ID is required.");
         }
